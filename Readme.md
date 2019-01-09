@@ -8,13 +8,15 @@ This script will run install packages and basic settings for the operation of th
 
 This script can be installed either using Wget or Curl.
 
+* Using **curl**
 ```shell
 $ curl -sL https://raw.githubusercontent.com/e-cattle/install/master/install.sh | bash -
-#   or
-$ wget -qO- https://raw.githubusercontent.com/e-cattle/install/master/install.sh | bash -
 ```
 
-Here you should say what actually happens when you execute the code above.
+* Using **wget**
+```shell
+$ wget -qO- https://raw.githubusercontent.com/e-cattle/install/master/install.sh | bash -
+```
 
 ### Prerequisites
 
