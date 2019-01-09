@@ -1,0 +1,7 @@
+@xset s noblank
+
+@xset s off
+
+@xset -dpms
+
+@chromium-browser --incognito --kiosk http://localhost:3000
