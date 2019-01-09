@@ -10,9 +10,9 @@
 #
 # Usage:
 #
-# curl -sL https://github.com/e-cattle/install/install.sh | bash -
+# curl -sL https://raw.githubusercontent.com/e-cattle/install/master/install.sh | bash -
 #   or
-# wget -qO- https://github.com/e-cattle/install/install.sh | bash -
+# wget -qO- https://raw.githubusercontent.com/e-cattle/install/master/install.sh | bash -
 #
 
 #Global Variables
