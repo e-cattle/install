@@ -61,7 +61,7 @@ echo 'Done.'
 echo
 echo '=> Installing Basics packages with Graphical Interface, Utilities and Chromium Browser'
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-sudo apt-get install -y --no-install-recommends openbox-lxde-session lightdm lxterminal \
+sudo apt-get install -y openbox-lxde-session lightdm lxterminal \
     chromium-browser git nodejs=8.15.0-1nodesource1 mongodb-server vim
 echo 'Done.'
 
@@ -86,7 +86,7 @@ curl $URL_SCRIPT/autostart --output $HOME/.config/lxsession/LXDE/autostart
 # -----------------------------------------------------------------------------
 echo
 echo '=> Disable services not used'
-SERVICES="bluetooth alsa-restore dhcpcd hciuart "
+SERVICES="bluetooth alsa-restore dhcpcd"
 for SERVICE in $SERVICES
 do
     sudo systemctl stop $SERVICE
