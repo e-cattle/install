@@ -86,12 +86,12 @@ curl $URL_SCRIPT/autostart --output $HOME/.config/lxsession/LXDE/autostart
 # -----------------------------------------------------------------------------
 echo
 echo '=> Disable services not used'
-SERVICES="bluetooth alsa-restore dhcpcd"
+SERVICES="bluetooth alsa-restore hciuart "
 for SERVICE in $SERVICES
 do
-    sudo systemctl stop $SERVICE
-    sudo systemctl disable $SERVICE
-    sudo systemctl daemon-reload
+   sudo systemctl stop $SERVICE
+   sudo systemctl disable $SERVICE
+   sudo systemctl daemon-reload
 done
 echo 'Done.'
 
