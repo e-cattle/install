@@ -1,12 +1,12 @@
 #!/bin/bash
 #
-# Bash script to install E-Cattle Bigboxx
+# Bash script to install e-Cattle Bigboxx
 #
 # Author:
 #   Bruno A. Caceres <brunoacaceres@gmail.com>
 #
 # Description:
-#   script to install E-Cattle Bigboxx
+#   Script to install e-Cattle Bigboxx.
 #
 # Usage:
 #

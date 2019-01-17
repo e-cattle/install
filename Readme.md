@@ -1,12 +1,17 @@
-![Logo of the project](./images/E-CattleLogo.png)
+
+<img src="https://raw.githubusercontent.com/e-cattle/art/master/eCattle.pnghttps://raw.githubusercontent.com/e-cattle/art/master/eCattle.png" width="300" alt="e-Cattle Logo" />
 
 # Script to deploy e-Cattle Bigboxx
 
-This script will run install packages and apply basic settings for e-Cattle Bigboxx deploy in Raspbian over Raspberry PI 3 Model B.
+This script will install packages and apply basic settings for deploy e-Cattle Bigboxx in Raspbian over **Raspberry PI 3 Model B**.
+
+## Prerequisites
+
+Raspbian (without desktop) installed with internet access configured.
 
 ## Getting started
 
-This script can be installed either using Wget or Curl.
+Run with Wget or Curl:
 
 * Using **curl**
 
@@ -15,10 +20,7 @@ $ curl -sL https://raw.githubusercontent.com/e-cattle/install/master/install.sh 
 ```
 
 * Using **wget**
+
 ```shell
 $ wget -qO- https://raw.githubusercontent.com/e-cattle/install/master/install.sh | bash -
 ```
-
-### Prerequisites
-
-* Raspbian (without desktop) installed with internet access configured.
