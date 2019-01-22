@@ -18,7 +18,7 @@
 #Global Variables
 #URL_SCRIPT="http://172.16.254.254:5000"
 URL_SCRIPT="https://raw.githubusercontent.com/e-cattle/install/master"
-URL_GIT="git@github.com:e-cattle"
+URL_GIT="https://github.com/e-cattle"
 PROJECT="/opt/bigboxx"
 
 
