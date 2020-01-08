@@ -42,3 +42,10 @@ Esse script irá prover a geração de uma imagem customizada contendo os módul
     ...
   }
 ```
+
+### Passo 02: Criação e registro da chave para assinatura dos arquivos de configuração no Ubuntu Store
+
+### Passo 03: Assinatura dos arquivos **bigboxx-model.json** e **bigboxx-user-assertion.json**
+
+### Passo 04: Gerando a imagem
+
