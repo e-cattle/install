@@ -10,7 +10,7 @@ Esse script irá prover a geração de uma imagem customizada contendo os módul
 - O software ubuntu-image instalado
 - O projeto **https://github.com/e-cattle/install.git**
 - Uma conta **https://login.ubuntu.com/**
-- Acesso na url **https://dashboard.snapcraft.io/dev/account/** para guardar o id snap **"Snap account-id" 2njk2832up839jik393** que será utilizado nos arquivos de configuração da imagem **bigboxx-model.json** e de criação do usuário **bigboxx-user-assertion.json**.
+- Acesso na url **https://dashboard.snapcraft.io/dev/account/** para guardar o id snap **"Snap account-id" 2njk2832up839jik393** que serão utilizados nos arquivos de configuração da imagem **bigboxx-model.json** e de criação do usuário **bigboxx-user-assertion.json**.
 
 ## Procedimentos
 
