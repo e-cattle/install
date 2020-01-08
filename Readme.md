@@ -1,26 +1,42 @@
-
 <img src="https://raw.githubusercontent.com/e-cattle/art/master/eCattle.pnghttps://raw.githubusercontent.com/e-cattle/art/master/eCattle.png" width="300" alt="e-Cattle Logo" />
 
-# Script to deploy e-Cattle Bigboxx
+# Procedimentos para geração de imagem do BigBoxx utilizando Ubuntu Core 18
 
-This script will install packages and apply basic settings for deploy e-Cattle Bigboxx in Raspbian over **Raspberry PI 3 Model B**.
+Esse script irá prover a geração de uma imagem customizada contendo os módulos snaps e demais dependências do e-Cattle BigBoxx no **Raspberry PI 3 Model B**.
 
-## Prerequisites
+## Pré-Requisitos
 
-Raspbian (without desktop) installed with internet access configured.
+- Sistema Operacional Ubuntu Linux 18.04 ou superior
+- O software ubuntu-image instalado
+- O projeto **https://github.com/e-cattle/install.git**
+- Uma conta **https://login.ubuntu.com/**
+- Acesso na url **https://dashboard.snapcraft.io/dev/account/** para guardar o id snap **"Snap account-id" 2njk2832up839jik393** que será utilizado nos arquivos de configuração da imagem **bigboxx-model.json** e de criação do usuário **bigboxx-user-assertion.json**.
 
-## Getting started
+## Procedimentos
 
-Run with Wget or Curl:
-
-* Using **curl**
+- No arquivo **bigboxx-model.json**, insira o **"Snap account-id"** nos campos **authority-id** e **brand-id**. No campo **timestamp** coloque a data e hora atual.
 
 ```shell
-$ curl -sL https://raw.githubusercontent.com/e-cattle/install/master/install.sh | bash -
+{
+    ...
+    "authority-id": "<Snap account-id>",
+    "brand-id": "<Snap account-id>",
+    ...
+    ...
+    "timestamp": "2019-12-23T13:26:01+00:00",
+  }
 ```
 
-* Using **wget**
+- No arquivo **bigboxx-user-assertion.json**, insira o **"Snap account-id"** nos campos **authority-id** e **brand-id**. No campo **since** coloque a data e hora atual.
 
 ```shell
-$ wget -qO- https://raw.githubusercontent.com/e-cattle/install/master/install.sh | bash -
+{
+    ...
+    "authority-id": "<Snap account-id>",
+    "brand-id": "<Snap account-id>",
+    ...
+    ...
+    "since": "2020-01-07T13:26:01+00:00",
+    ...
+  }
 ```
