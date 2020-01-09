@@ -108,7 +108,7 @@ user: "bigboxxvbox"
 Enter passphrase:
 ```
 
-- Assinando **bigboxx-model.json**
+- Assinando **bigboxx-user-assertion.json**
 
 ```shell
 bigboxx@bigboxx:~/bigboxx/install$ cat bigboxx-user-assertion.json | snap sign -k bigboxxvbox > bigboxx-user.assertion
