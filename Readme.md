@@ -102,7 +102,7 @@ Done. The key "bigboxxvbox" (gyx_EP0IECiZclikao4gZdocoq_bWeicJBJ5w1iJCPKRai0TV65
 ```shell
 bigboxx@bigboxx:~/bigboxx/install$ cat bigboxx-model.json | snap sign -k bigboxxvbox > bigboxx.model
 You need a passphrase to unlock the secret key for
-user: "<nome-da-chave>"
+user: "bigboxxvbox"
 4096-bit RSA key, ID 0B79B865, created 2020-01-08
 
 Enter passphrase:
@@ -113,7 +113,7 @@ Enter passphrase:
 ```shell
 bigboxx@bigboxx:~/bigboxx/install$ cat bigboxx-user-assertion.json | snap sign -k bigboxxvbox > bigboxx-user.assertion
 You need a passphrase to unlock the secret key for
-user: "<nome-da-chave>"
+user: "bigboxxvbox"
 4096-bit RSA key, ID 0B79B865, created 2020-01-08
 
 Enter passphrase:
