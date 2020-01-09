@@ -83,20 +83,15 @@ bigboxx  JaY6gxaNAPHVudjfjdskjdfksgPyjUzwQKotgk7rrBFzpXYo_iSMtVCILtSiSI
 - Registrando na Snapcraft
 
 ```shell
-Ubun
-$ snapcraft register-key
-Enter your Ubuntu One SSO credentials.
-Email: <email-ubuntu.com>
-Password: <senha-ubuntu.com>
-Second-factor auth:
+bigboxx@bigboxx:~/bigboxx/install$ snapcraft register-key 
+Enter your Ubuntu One e-mail address and password.
+If you do not have an Ubuntu One account, you can create one at https://dashboard.snapcraft.io/openid/login
+Email: bigboxx@email.com
+Password: 
 
-Login successful.
+We strongly recommend enabling multi-factor authentication: https://help.ubuntu.com/community/SSO/FAQs/2FA
 Registering key ...
-
-You need a passphrase to unlock the secret key for user: "bigboxx"
-4096-bit RSA key, ID 0B79B865, created 2020-01-08
-
-Done. The key "nome-da-chave" (zjfdksalfjskdlfjjfdkjfd-fjdkslfjiowur82930u3893kdalfdsjfklsdjdfkl) may be used to sign your assertions.
+Done. The key "bigboxxvbox" (gyx_EP0IECiZclikao4gZdocoq_bWeicJBJ5w1iJCPKRai0TV65icz-sDC3G0FLi) may be used to sign your assertions.
 
 ```
 
