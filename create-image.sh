@@ -144,12 +144,6 @@ sed -i "/dtoverlay=vc4-fkms-v3d,cma-256/c dtoverlay=vc4-fkms-v3d,cma-256,pi3-dis
 echo "Configuring Browser"
 snap set wpe-webkit-mir-kiosk url="http://localhost:3002" &
 
-echo "Upgrade modules Bigboxx"
-snap refresh bigboxx-kernel --devmode &
-snap refresh bigboxx-query --devmode &
-snap refresh bigboxx-totem --devmode &
-snap refresh bigboxx-lora --devmode &
-
 # Enable console-conf again
 rm /writable/system-data/var/lib/console-conf/complete
 
