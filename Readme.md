@@ -122,3 +122,46 @@ Enter passphrase:
 
 ### Passo 04: Gerando a imagem
 
+- Executar o script **create-image.sh** para gerar a imagem.
+
+```shell
+bigboxx@bigboxx:~/bigboxx/install$ sudo ./create-image.sh 
+Warning: for backwards compatibility, `ubuntu-image` falls back to `ubuntu-image snap` if no subcommand is given
+-o/--output is deprecated; use -O/--output-dir instead
+Fetching snapd
+Fetching core18
+Fetching pi-kernel
+Fetching pi
+Fetching bigboxx-kernel
+Fetching bigboxx-query
+Fetching bigboxx-totem
+Fetching bigboxx-lora
+Fetching mir-kiosk
+Fetching wpe-webkit-mir-kiosk
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/journald.conf' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/journald.conf'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/logind.conf' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/logind.conf'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/logind.conf.d' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/logind.conf.d'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/network' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/network'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/resolved.conf' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/resolved.conf'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/system' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/system'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/system/cloud-init.target.wants' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/system/cloud-init.target.wants'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/system/cloud-init.target.wants/cloud-config.service' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/system/cloud-init.target.wants/cloud-config.service'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/system/cloud-init.target.wants/cloud-final.service' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/system/cloud-init.target.wants/cloud-final.service'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/system/cloud-init.target.wants/cloud-init-local.service' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/system/cloud-init.target.wants/cloud-init-local.service'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/system/cloud-init.target.wants/cloud-init.service' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/system/cloud-init.target.wants/cloud-init.service'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/system/dbus-fi.w1.wpa_supplicant1.service' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/system/dbus-fi.w1.wpa_supplicant1.service'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/system/dbus-org.freedesktop.resolve1.service' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/system/dbus-org.freedesktop.resolve1.service'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/system/getty.target.wants' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/system/getty.target.wants'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/system/getty.target.wants/getty@tty1.service' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/system/getty.target.wants/getty@tty1.service'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/system/sshd.service' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/system/sshd.service'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/system.conf' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/system.conf'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/system.conf.d' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/system.conf.d'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/timesyncd.conf' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/timesyncd.conf'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/user' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/user'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/user.conf' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/user.conf'
+'/tmp/tmp.Uq28NJ7sa9/etc/systemd/user.conf.d' -> '/tmp/tmp.iQWjoaleCF/system-data/etc/systemd/user.conf.d'
+loop deleted : /dev/loop8
+bigboxx@bigboxx:~/bigboxx/install$
+```
+
+- A imagem **bigboxx.img** foi gerada e está pronta para ser gravada no cartão.
