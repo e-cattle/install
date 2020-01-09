@@ -53,7 +53,7 @@ Esse script irá prover a geração de uma imagem customizada contendo os módul
   "username": "bigboxx",
   "email": "bigboxx@localhost",
   "password": "$6$cS38YDN5rvWBNJuU$T/ZuXdKKUCMZblGYbEl.9iwAaK.gIKDTlYiUAFEyMBRLAiEX4sNOMAGXVQ9nw9rQT6VBQO08QUrb7KJQGLM2A1",
-  "since": "2019-12-23T13:26:01+00:00",
+  "since": "2020-01-09T02:25:23+00:00",
   "until": "2999-12-23T13:26:01+00:00"
 }
 
