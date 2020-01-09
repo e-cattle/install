@@ -63,25 +63,28 @@ Esse script irá prover a geração de uma imagem customizada contendo os módul
 
 - Para a geração da imagem, os arquivos **bigboxx-model.json**, responsável pelos parâmetros e dependências necessárias para criação da imagem, e o **bigboxx-user-assertion.json**, responsável pelos parâmetros de criação do usuário bigboxx, precisam ser assinados por uma chave reconhecida pela Canonical. Essa chave deve ser gerada e registrada na Store do Ubuntu **Snapcraft**.
 
-- Criando a chave
+- Criando a chave de nome **bigboxx**
 
 ```shell
-$ snap create-key <nome-da-chave>
-Passphrase: <senha>
-Confirm passphrase: <senha>
+bigboxx@bigboxx:~/bigboxx/install$ snap create-key bigboxx
+Passphrase: 
+Confirm passphrase: 
 ```
+
+- Listando as chaves
+
+```shell
+bigboxx@bigboxx:~/bigboxx/install$ snap keys
+Name     SHA3-384
+bigboxx  JaY6gxaNAPHVudjfjdskjdfksgPyjUzwQKotgk7rrBFzpXYo_iSMtVCILtSiSI
+```
+
 
 - Registrando na Snapcraft
 
 ```shell
 Ubun
 $ snapcraft register-key
-Select a key:
-
-  Number  Name           SHA3-384 fingerprint
-       1  <nome-da-chave>  hJT2R2By6jklkEvp5DbniCm7L_mnTISHYiewRtO-uv98fC2MRU2UDjKckwaKL55h6l
-
-Key number: 1
 Enter your Ubuntu One SSO credentials.
 Email: <email-ubuntu.com>
 Password: <senha-ubuntu.com>
@@ -90,10 +93,10 @@ Second-factor auth:
 Login successful.
 Registering key ...
 
-You need a passphrase to unlock the secret key for user: " nome-da-chave "
+You need a passphrase to unlock the secret key for user: "bigboxx"
 4096-bit RSA key, ID 0B79B865, created 2020-01-08
 
-Done. The key "nome-da-chave" (zjfdksalfjskdlfjjfdkjfd-fjdkslfjiowur82930u3893kdalfdsjfkls;jdfkl) may be used to sign your assertions.
+Done. The key "nome-da-chave" (zjfdksalfjskdlfjjfdkjfd-fjdkslfjiowur82930u3893kdalfdsjfklsdjdfkl) may be used to sign your assertions.
 
 ```
 
