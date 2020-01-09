@@ -29,7 +29,7 @@ Esse script irá prover a geração de uma imagem customizada contendo os módul
   }
 ```
 
-- No arquivo **bigboxx-user-assertion.json**, insira o **"Snap account-id"** nos campos **authority-id** e **brand-id**. No campo **since** coloque a data e hora atual.
+- No arquivo **bigboxx-user-assertion.json**, insira o valor do **"Snap account-id"** nos campos **authority-id** e **brand-id**. Já no campo **since** coloque a data e hora atual.
 
 ```shell
 {
@@ -45,7 +45,15 @@ Esse script irá prover a geração de uma imagem customizada contendo os módul
 
 ### Passo 02: Criação e registro da chave para assinatura dos arquivos de configuração no Ubuntu Store
 
+- Para a geração da imagem, os arquivos **bigboxx-model.json**, responsável pelos parâmetros e dependências necessárias para criação da imagem, e o **bigboxx-user-assertion.json**, responsável pelos parâmetros de criação do usuário bigboxx, precisam ser assinados por uma chave reconhecida pela Canonical. Essa chave certifica a integridade dos arquivos.
+
 ### Passo 03: Assinatura dos arquivos **bigboxx-model.json** e **bigboxx-user-assertion.json**
+
+```shell
+$ snap create-key <nome-da-chave>
+Passphrase: <senha>
+Confirm passphrase: <senha>
+```
 
 ### Passo 04: Gerando a imagem
 
