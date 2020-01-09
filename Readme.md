@@ -24,12 +24,12 @@ Esse script irá prover a geração de uma imagem customizada contendo os módul
   "authority-id": "<Snap account-id>",
   "brand-id": "<Snap account-id>",
   "series": "16",
-  "model": "bigboxx", <Nome do modelo da imagem>
-  "architecture": "arm64", <Nome da Arquitetura que a imagem será gerada>
+  "model": "bigboxx", <"Nome do modelo da imagem">
+  "architecture": "arm64", <"Nome da Arquitetura que a imagem será gerada">
   "base": "core18", <Nome do kernel Base>
   "gadget": "pi=18-pi3",
   "kernel": "pi-kernel=18-pi3",
-  "required-snaps": [ <Dependencias que serão inseridas na imagem>
+  "required-snaps": [ <"Dependências que serão inseridas na imagem">
     "bigboxx-kernel",
     "bigboxx-query",
     "bigboxx-totem",
