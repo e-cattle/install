@@ -66,7 +66,7 @@ Esse script irá prover a geração de uma imagem customizada contendo os módul
 - Criando a chave de nome **bigboxx**
 
 ```shell
-bigboxx@bigboxx:~/bigboxx/install$ snap create-key bigboxx
+bigboxx@bigboxx:~/bigboxx/install$ snap create-key bigboxxvbox
 Passphrase: 
 Confirm passphrase: 
 ```
@@ -76,7 +76,7 @@ Confirm passphrase:
 ```shell
 bigboxx@bigboxx:~/bigboxx/install$ snap keys
 Name     SHA3-384
-bigboxx  JaY6gxaNAPHVudjfjdskjdfksgPyjUzwQKotgk7rrBFzpXYo_iSMtVCILtSiSI
+bigboxxvbox  JaY6gxaNAPHVudjfjdskjdfksgPyjUzwQKotgk7rrBFzpXYo_iSMtVCILtSiSI
 ```
 
 
@@ -100,7 +100,7 @@ Done. The key "bigboxxvbox" (gyx_EP0IECiZclikao4gZdocoq_bWeicJBJ5w1iJCPKRai0TV65
 - Assinando **bigboxx-model.json**
 
 ```shell
-cat bigboxx-model.json | snap sign -k <nome-da-chave> > bigboxx.model
+cat bigboxx-model.json | snap sign -k bigboxxvbox > bigboxx.model
 You need a passphrase to unlock the secret key for
 user: "<nome-da-chave>"
 4096-bit RSA key, ID 0B79B865, created 2020-01-08
@@ -111,7 +111,7 @@ Enter passphrase:
 - Assinando **bigboxx-model.json**
 
 ```shell
-cat bigboxx-user-assertion.json | snap sign -k <nome-da-chave> > bigboxx-user.assertion
+cat bigboxx-user-assertion.json | snap sign -k bigboxxvbox > bigboxx-user.assertion
 You need a passphrase to unlock the secret key for
 user: "<nome-da-chave>"
 4096-bit RSA key, ID 0B79B865, created 2020-01-08
