@@ -70,7 +70,7 @@ bigboxx@bigboxx:~/bigboxx/install$ date -Iseconds --utc
 
 - Para a geração da imagem, os arquivos **bigboxx-model.json**, responsável pelos parâmetros e dependências necessárias para criação da imagem, e o **bigboxx-user-assertion.json**, responsável pelos parâmetros de criação do usuário bigboxx, precisam ser assinados por uma chave reconhecida pela Canonical. Essa chave deve ser gerada e registrada na Store do Ubuntu **Snapcraft**.
 
-- Criando a chave de nome **bigboxx**
+- Criando a chave
 
 ```shell
 bigboxx@bigboxx:~/bigboxx/install$ snapcraft create-key bigboxxvbox
