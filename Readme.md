@@ -21,7 +21,7 @@ bigboxx@bigboxx:~/bigboxx/install$ date -Iseconds --utc
 2020-01-12T13:41:34+00:00
 ```
 
-### Passo 01: Editar os arquivos de configuração
+### Passo 02: Editando arquivos de configuração
 
 - No arquivo **bigboxx-model.json**, insira o **"Snap account-id"** nos campos **authority-id** e **brand-id**.
 
@@ -66,14 +66,14 @@ bigboxx@bigboxx:~/bigboxx/install$ date -Iseconds --utc
 
 ```
 
-### Passo 02: Criação e registro da chave para assinatura dos arquivos de configuração no Ubuntu Store
+### Passo 03: Criação e registro da chave para assinatura dos arquivos de configuração no Ubuntu Store
 
 - Para a geração da imagem, os arquivos **bigboxx-model.json**, responsável pelos parâmetros e dependências necessárias para criação da imagem, e o **bigboxx-user-assertion.json**, responsável pelos parâmetros de criação do usuário bigboxx, precisam ser assinados por uma chave reconhecida pela Canonical. Essa chave deve ser gerada e registrada na Store do Ubuntu **Snapcraft**.
 
 - Criando a chave de nome **bigboxx**
 
 ```shell
-bigboxx@bigboxx:~/bigboxx/install$ snap create-key bigboxxvbox
+bigboxx@bigboxx:~/bigboxx/install$ snapcraft create-key bigboxxvbox
 Passphrase: 
 Confirm passphrase: 
 ```
@@ -102,7 +102,7 @@ Done. The key "bigboxxvbox" (gyx_EP0IECiZclikao4gZdocoq_bWeicJBJ5w1iJCPKRai0TV65
 
 ```
 
-### Passo 03: Assinando os arquivos **bigboxx-model.json** e **bigboxx-user-assertion.json**
+### Passo 04: Assinando os arquivos **bigboxx-model.json** e **bigboxx-user-assertion.json**
 
 - Assinando **bigboxx-model.json**
 
@@ -127,7 +127,7 @@ Enter passphrase:
 ```
 
 
-### Passo 04: Gerando a imagem
+### Passo 05: Gerando a imagem
 
 - Executar o script **create-image.sh** para gerar a imagem.
 
