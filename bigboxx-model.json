@@ -8,11 +8,6 @@
   "base": "core18",
   "gadget": "pi=18-pi3",
   "kernel": "pi-kernel=18-pi3",
-  "required-snaps": [
-    "bigboxx-kernel",
-    "bigboxx-query",
-    "bigboxx-totem",
-    "bigboxx-lora"
-  ],
-  "timestamp": "2019-12-23T13:26:01+00:00"
+  "required-snaps": ["bigboxx-kernel", "bigboxx-query", "bigboxx-totem"],
+  "timestamp": "<Resutado-commando-passo01>"
 }
