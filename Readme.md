@@ -1,16 +1,19 @@
 <img src="https://raw.githubusercontent.com/e-cattle/art/master/eCattle.pnghttps://raw.githubusercontent.com/e-cattle/art/master/eCattle.png" width="300" alt="e-Cattle Logo" />
 
-# Procedimentos para geração de imagem do BigBoxx utilizando Ubuntu Core 18
+# Geração de imagem do BigBoxx utilizando Ubuntu Core 18
 
-Esse script irá prover a geração de uma imagem customizada contendo os módulos snaps e demais dependências do e-Cattle BigBoxx no **Raspberry PI 3 Model B**.
+Esse script irá prover a geração de uma imagem customizada do **Ubuntu Core 18** para **ARM64** contendo os módulos snaps e demais dependências do **e-Cattle BigBoxx**.
 
-## Pré-Requisitos
+## Requisitos
 
-- Sistema Operacional Ubuntu Linux 18.04 ou superior
-- O software ubuntu-image instalado
-- O projeto **https://github.com/e-cattle/install.git**
-- Uma conta **https://login.ubuntu.com/**
-- Acesso na url **https://dashboard.snapcraft.io/dev/account/** para guardar o id snap **"Snap account-id"z   ** que será utilizado nos arquivos de configuração **bigboxx-model.json** e **bigboxx-user-assertion.json**.
+- Sistema Operacional **Ubuntu Linux 18.04** ou superior;
+- Software **snapcraft** instalado: ```sudo snap install snapcraft --classic```;
+- Software **ubuntu-image** instalado: ```sudo snap install ubuntu-image --classic```;
+- Software **GIT** instalado: ```sudo apt update && sudo apt install git```;
+- Software **kpartx** instalado: ```sudo apt install kpartx```;
+- O projeto **install** deste repositório: ```git clone https://github.com/e-cattle/install.git```;
+- Uma conta Sigle SignOn em **https://login.ubuntu.com/**; e
+- Acesso na url **https://dashboard.snapcraft.io/dev/account/** para guardar o ID Snap (_Snap Account ID_), que será utilizado nos arquivos de configuração **bigboxx-model.json** e **bigboxx-user-assertion.json**.
 
 ## Procedimentos
 
