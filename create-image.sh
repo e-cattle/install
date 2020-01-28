@@ -45,7 +45,7 @@ ubuntu-image \
 	-o $image_name \
 	$ubuntu_image_extra_args \
 	--snap mir-kiosk=latest/stable \
-	--snap wpe-webkit-mir-kiosk=latest/beta \
+	--snap wpe-webkit-mir-kiosk=latest/stable \
 	$model.model
 
 kpartx -a $image_name
@@ -143,6 +143,13 @@ sed -i "/dtoverlay=vc4-fkms-v3d,cma-256/c dtoverlay=vc4-fkms-v3d,cma-256,pi3-dis
 
 echo "Configuring Browser"
 snap set wpe-webkit-mir-kiosk url="http://localhost:3002" &
+
+# echo "Update Snaps"
+# snap refresh bigboxx-kernel --devmode &
+# snap refresh bigboxx-query --devmode &
+# snap refresh bigboxx-totem --devmode &
+# snap refresh mir-kiosk &
+# snap refresh wpe-webkit-mir-kiosk &
 
 # Enable console-conf again
 rm /writable/system-data/var/lib/console-conf/complete
