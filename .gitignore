@@ -1,5 +1,7 @@
 bigboxx-user.assertion
 *.img
-bigboxx.model
+*.model
 seed.manifest
 snaps.manifest
+*.tar.gz
+*.tar.xz

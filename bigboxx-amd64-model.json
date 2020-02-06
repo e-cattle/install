@@ -4,9 +4,9 @@
   "brand-id": "<Snap account-id>",
   "series": "16",
   "model": "bigboxx",
-  "architecture": "arm64",
+  "architecture": "amd64",
   "base": "core18",
-  "gadget": "pi=18-pi3",
-  "kernel": "pi-kernel=18-pi3",
+  "gadget": "pc=18",
+  "kernel": "pc-kernel=18",
   "timestamp": "<Resutado-commando-passo01>"
 }
