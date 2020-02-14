@@ -4,6 +4,24 @@
 # Author: Bruno de Abreu Caceres
 # Date: Jan/2020
 
+#Pre-requisites
+
+if [ ! -f /home/bigboxx/.ssh/id_rsa  ] ; then
+
+   echo "Hidden cursor"
+   snap set mir-kiosk cursor="none"   
+
+   echo "Desabling Bluetooth"
+   sudo sed -i "/dtoverlay=vc4-fkms-v3d,cma-256/c dtoverlay=vc4-fkms-v3d,cma-256,pi3-disable-bt" /boot/uboot/config.txt
+
+   echo "Configuring Browser"
+   snap set wpe-webkit-mir-kiosk url="http://localhost:3002"
+
+   echo "SSH Key Generate"
+   ssh-keygen -t rsa -N '' -f /home/bigboxx/.ssh/id_rsa ; cat /home/bigboxx/.ssh/id_rsa.pub > /home/bigboxx/.ssh/authorized_keys ; chmod 600 /home/bigboxx/.ssh/authorized_keys
+
+fi
+
 Menu(){
 clear
    echo "------------------------------------------"
@@ -50,14 +68,14 @@ Network(){
          echo "    Configure Ethernet Network Static     "
          echo "------------------------------------------"
          echo
-         echo "Enter the IP Address - Ex: 192.168.15.10"
+         echo -n "Enter the IP Address - Ex: 192.168.15.10: "
          read ip
-         echo "Enter the Gateway IP - Ex: 192.168.15.1"
+         echo -n "Enter the Gateway IP - Ex: 192.168.15.1: "
          read gw
-         echo "Would you like to apply the network settings ? (s/N)"
+         echo -n "(Restart is required) - Would you like to apply the network settings ? (y/N): "
          read op
          case $op in
-            s) 
+            y) 
             NOW=$(date +"%Y-%m-%d-%H-%M-%S")
             sudo mv  /etc/netplan/00-snapd-config.yaml /home/bigboxx/00-snapd-config-$NOW.yaml
 sudo bash -c 'cat << 'EOF' > /etc/netplan/00-snapd-config.yaml
@@ -74,7 +92,7 @@ EOF'
 sudo sed -i "s/IPADDRESS/\[$ip\/24\]/" "/etc/netplan/00-snapd-config.yaml"
 sudo sed -i "s/GATEWAY/$gw/" "/etc/netplan/00-snapd-config.yaml"
 sudo netplan apply
-            Network
+sudo reboot
             ;;
             N) Network ;;
             *) "Unknown option." ; echo ; Network ;;
@@ -86,10 +104,10 @@ sudo netplan apply
          echo "    Configure Ethernet Network DHCP       "
          echo "------------------------------------------"
          echo
-         echo "Would you like to apply the network settings ? (s/N)"
+         echo -n "(Restart is required) - Would you like to apply the network settings ? (y/N): "
          read op
          case $op in
-            s) 
+            y) 
             NOW=$(date +"%Y-%m-%d-%H-%M-%S")
             sudo mv  /etc/netplan/00-snapd-config.yaml /home/bigboxx/00-snapd-config-$NOW.yaml
 sudo bash -c 'cat << 'EOF' > /etc/netplan/00-snapd-config.yaml
@@ -108,7 +126,7 @@ network:
             dhcp4: true
 EOF'
 sudo netplan apply
-            Network
+sudo reboot
             ;;
             N) Network ;;
             *) "Unknown option." ; echo ; Network ;;
@@ -121,15 +139,15 @@ sudo netplan apply
          echo "    Configure Wifi Network Static     "
          echo "------------------------------------------"
          echo
-         echo "SSID Name"
+         echo -n "SSID Name: "
          read ssid
-         echo "Password SSID - $ssid"
+         echo -n "Password SSID - $ssid: "
          read password         
-         echo "Enter the IP Address - Ex: 192.168.15.10"
+         echo -n "Enter the IP Address - Ex: 192.168.15.10: "
          read ip
-         echo "Enter the Gateway IP - Ex: 192.168.15.1"
+         echo -n "Enter the Gateway IP - Ex: 192.168.15.1: "
          read gw
-         echo "Would you like to apply the network settings?? (y/N)"
+         echo -n "(Restart is required) - Would you like to apply the network settings ? (y/N): "
          read op
          case $op in
             y) 
@@ -155,7 +173,7 @@ sudo sed -i "s/SSID/$ssid/" "/etc/netplan/00-snapd-config.yaml"
 sudo sed -i "s/PASSWD/$password/" "/etc/netplan/00-snapd-config.yaml"
 sudo netplan generate
 sudo netplan apply
-            Network
+sudo reboot
             ;;
             N) Network ;;
             *) "Unknown option." ; echo ; Network ;;
@@ -167,14 +185,14 @@ sudo netplan apply
          echo "    Configure Wifi Network DHCP       "
          echo "------------------------------------------"
          echo
-         echo "SSID Name"
+         echo -n "SSID Name: "
          read ssid
-         echo "Password SSID - $ssid"
+         echo -n "Password SSID - $ssid: "
          read password
-         echo "Would you like to apply the network settings ? (s/N)"
+         echo -n "(Restart is required) - Would you like to apply the network settings ? (y/N): "
          read op
          case $op in
-            s) 
+            y) 
             NOW=$(date +"%Y-%m-%d-%H-%M-%S")
             sudo mv  /etc/netplan/00-snapd-config.yaml /home/bigboxx/00-snapd-config-$NOW.yaml
 sudo bash -c 'cat << 'EOF' > /etc/netplan/00-snapd-config.yaml
@@ -192,13 +210,13 @@ sudo sed -i "s/SSID/$ssid/" "/etc/netplan/00-snapd-config.yaml"
 sudo sed -i "s/PASSWD/$password/" "/etc/netplan/00-snapd-config.yaml"
 sudo netplan generate
 sudo netplan apply
-            Network
+sudo reboot
             ;;
             N) Network ;;
             *) "Unknown option." ; echo ; Network ;;
          esac
       ;;
-      5) cat /etc/netplan/00-snapd-config.yaml ; read enter ; Network ;;
+      5) cat /etc/netplan/00-snapd-config.yaml ; echo -n "Press ENTER key to continue... " ; read anykey ; Network ;;
       *) "Unknown option." ; echo ; Menu ;;
    esac
 }
