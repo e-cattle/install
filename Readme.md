@@ -39,12 +39,6 @@ bigboxx@bigboxx:~/bigboxx/install$ date -Iseconds --utc
   "base": "core18", <Nome do kernel Base>
   "gadget": "pi=18-pi3",
   "kernel": "pi-kernel=18-pi3",
-  "required-snaps": [ <"Dependências que serão inseridas na imagem">
-    "bigboxx-kernel",
-    "bigboxx-query",
-    "bigboxx-totem",
-    "bigboxx-lora"
-  ],
   "timestamp": "<Resutado-commando-passo01>"
 }
 
