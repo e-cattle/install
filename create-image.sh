@@ -24,7 +24,7 @@ model=bigboxx
 arch=arm64
 image_name=bigboxx.img
 ubuntu_image_extra_args=
-channel=candidate
+channel=stable
 
 if [ ! -z "$1" ] && [ "$1" == "amd64" ] ; then
 	channel=candidate
@@ -38,18 +38,10 @@ if [ ! -z "$2" ] ; then
 	snap=$2
 fi
 
-
 if [ ! -z "$snap" ] ; then
 	ubuntu_image_extra_args="--snap $snap"
 fi
 
-# if [ "$1" == "amd64" ] ; then
-	# ubuntu-image \
-	# 	--channel $channel \
-	# 	-o $image_name \
-	# 	$ubuntu_image_extra_args \
-	# 	$model.model
-# else
 ubuntu-image \
 	--channel $channel \
 	-o $image_name \
@@ -60,12 +52,7 @@ ubuntu-image \
 	--snap wpe-webkit-mir-kiosk=latest/stable \
 	$ubuntu_image_extra_args \
 	$model.model
-# fi
 	# --snap bigboxx-lora=latest/edge \
-	# --snap mir-kiosk=latest/stable \
-	# --snap wpe-webkit-mir-kiosk=latest/stable \
-
-
 
 kpartx -a $image_name
 sleep 0.5

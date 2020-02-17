@@ -29,16 +29,16 @@ clear
    echo "------------------------------------------"
    echo
    echo "[ 1 ] Configure Network"
-   echo "[ 2 ] Change Bigboxx Password"
+   echo "[ 2 ] Configure Screen"
    echo "[ 3 ] Console Shell"
-   echo "[ 4 ] Reboot"
+   echo "[ 4 ] Apply Configurations and Reboot"
    echo "[ 5 ] Shutdown"
    echo
    echo -n "Choose the operation ? "
    read op
    case $op in
       1) Network ;;
-      2) Menu ;;
+      2) Screen ;;
       3) /bin/bash ;;
       4) sudo reboot ;;
       5) sudo shutdown -h now ;;
@@ -53,11 +53,11 @@ Network(){
    echo "------------------------------------------"
    echo
    echo "[ 1 ] Configure Ethernet Network Static"
-   echo "[ 2 ] Configure Ethernet Network DHCP"
+   echo "[ 2 ] Configure Ethernet Network DHCP - (Config Default)"
    echo "[ 3 ] Configure Wifi Network Static"
    echo "[ 4 ] Configure Wifi Network DHCP"
    echo "[ 5 ] Show Network Config"
-   echo "[ 6 ] Return Menu"
+   echo "[ 6 ] Return Main Menu"
    echo
    echo -n "Choose the operation ? "
    read op
@@ -72,12 +72,14 @@ Network(){
          read ip
          echo -n "Enter the Gateway IP - Ex: 192.168.15.1: "
          read gw
+         echo -n "Enter the DNS IP - Ex: 192.168.15.1, 8.8.8.8: "
+         read dns
          echo -n "(Restart is required) - Would you like to apply the network settings ? (y/N): "
          read op
          case $op in
             y) 
-            NOW=$(date +"%Y-%m-%d-%H-%M-%S")
-            sudo mv  /etc/netplan/00-snapd-config.yaml /home/bigboxx/00-snapd-config-$NOW.yaml
+            # NOW=$(date +"%Y-%m-%d-%H-%M-%S")
+            # sudo mv  /etc/netplan/00-snapd-config.yaml /home/bigboxx/00-snapd-config-$NOW.yaml
 sudo bash -c 'cat << 'EOF' > /etc/netplan/00-snapd-config.yaml
 network:
   ethernets:
@@ -85,14 +87,15 @@ network:
       addresses: IPADDRESS
       gateway4: GATEWAY
       nameservers:
-        addresses: [8.8.8.8]
+        addresses: [DNS]
       dhcp4: false
   version: 2
 EOF'
 sudo sed -i "s/IPADDRESS/\[$ip\/24\]/" "/etc/netplan/00-snapd-config.yaml"
 sudo sed -i "s/GATEWAY/$gw/" "/etc/netplan/00-snapd-config.yaml"
+sudo sed -i "s/DNS/$dns/" "/etc/netplan/00-snapd-config.yaml"
 sudo netplan apply
-sudo reboot
+Network
             ;;
             N) Network ;;
             *) "Unknown option." ; echo ; Network ;;
@@ -108,8 +111,8 @@ sudo reboot
          read op
          case $op in
             y) 
-            NOW=$(date +"%Y-%m-%d-%H-%M-%S")
-            sudo mv  /etc/netplan/00-snapd-config.yaml /home/bigboxx/00-snapd-config-$NOW.yaml
+            # NOW=$(date +"%Y-%m-%d-%H-%M-%S")
+            # sudo mv  /etc/netplan/00-snapd-config.yaml /home/bigboxx/00-snapd-config-$NOW.yaml
 sudo bash -c 'cat << 'EOF' > /etc/netplan/00-snapd-config.yaml
 # This is the initial network config.
 # It can be overwritten by cloud-init or console-conf.
@@ -126,7 +129,7 @@ network:
             dhcp4: true
 EOF'
 sudo netplan apply
-sudo reboot
+Network
             ;;
             N) Network ;;
             *) "Unknown option." ; echo ; Network ;;
@@ -147,12 +150,14 @@ sudo reboot
          read ip
          echo -n "Enter the Gateway IP - Ex: 192.168.15.1: "
          read gw
+         echo -n "Enter the DNS IP - Ex: 192.168.15.1, 8.8.8.8s: "
+         read dns         
          echo -n "(Restart is required) - Would you like to apply the network settings ? (y/N): "
          read op
          case $op in
             y) 
-            NOW=$(date +"%Y-%m-%d-%H-%M-%S")
-            sudo mv  /etc/netplan/00-snapd-config.yaml /home/bigboxx/00-snapd-config-$NOW.yaml
+            # NOW=$(date +"%Y-%m-%d-%H-%M-%S")
+            # sudo mv  /etc/netplan/00-snapd-config.yaml /home/bigboxx/00-snapd-config-$NOW.yaml
 sudo bash -c 'cat << 'EOF' > /etc/netplan/00-snapd-config.yaml
 network:
   wifis:
@@ -163,7 +168,7 @@ network:
       addresses: IPADDRESS
       gateway4: GATEWAY
       nameservers:
-        addresses: [8.8.8.8]
+        addresses: [DNS]
       dhcp4: false
   version: 2
 EOF'
@@ -171,9 +176,10 @@ sudo sed -i "s/IPADDRESS/\[$ip\/24\]/" "/etc/netplan/00-snapd-config.yaml"
 sudo sed -i "s/GATEWAY/$gw/" "/etc/netplan/00-snapd-config.yaml"
 sudo sed -i "s/SSID/$ssid/" "/etc/netplan/00-snapd-config.yaml"
 sudo sed -i "s/PASSWD/$password/" "/etc/netplan/00-snapd-config.yaml"
+sudo sed -i "s/DNS/$dns/" "/etc/netplan/00-snapd-config.yaml"
 sudo netplan generate
 sudo netplan apply
-sudo reboot
+Network
             ;;
             N) Network ;;
             *) "Unknown option." ; echo ; Network ;;
@@ -193,8 +199,8 @@ sudo reboot
          read op
          case $op in
             y) 
-            NOW=$(date +"%Y-%m-%d-%H-%M-%S")
-            sudo mv  /etc/netplan/00-snapd-config.yaml /home/bigboxx/00-snapd-config-$NOW.yaml
+            # NOW=$(date +"%Y-%m-%d-%H-%M-%S")
+            # sudo mv  /etc/netplan/00-snapd-config.yaml /home/bigboxx/00-snapd-config-$NOW.yaml
 sudo bash -c 'cat << 'EOF' > /etc/netplan/00-snapd-config.yaml
 # This is the network config written by 'console-conf'
 network:
@@ -210,15 +216,73 @@ sudo sed -i "s/SSID/$ssid/" "/etc/netplan/00-snapd-config.yaml"
 sudo sed -i "s/PASSWD/$password/" "/etc/netplan/00-snapd-config.yaml"
 sudo netplan generate
 sudo netplan apply
-sudo reboot
+Network
             ;;
             N) Network ;;
             *) "Unknown option." ; echo ; Network ;;
          esac
       ;;
-      5) cat /etc/netplan/00-snapd-config.yaml ; echo -n "Press ENTER key to continue... " ; read anykey ; Network ;;
+      5) 
+      clear  
+      echo "------------------------------------------"
+      echo "    Network Config                        "
+      echo "------------------------------------------"
+      echo      
+      cat /etc/netplan/00-snapd-config.yaml ; echo ; echo -n "Press ENTER key to continue... " ; read anykey ; Network ;;
       *) "Unknown option." ; echo ; Menu ;;
    esac
+}
+
+Screen(){
+   clear
+   echo "------------------------------------------"
+   echo "    Screen Config          "
+   echo "------------------------------------------"
+   echo
+   echo "[ 1 ] Screen - Normal - (Config Default)"
+   echo "[ 2 ] Screen - Inverted"
+   echo "[ 3 ] Show Screen Config"
+   echo "[ 4 ] Return Main Menu"
+   echo
+   echo -n "Choose the operation ? "
+   read op
+   case $op in
+      1)
+         echo -n "(Restart is required) - Would you like to apply the screen settings ? (y/N): "
+         read op
+         case $op in
+            y)
+               sudo sed -i '/orientation/d' /var/snap/mir-kiosk/current/miral-kiosk.display
+               sudo bash -c 'echo "        orientation: normal    # {normal, left, right, inverted}, defaults to normal" >>/var/snap/mir-kiosk/current/miral-kiosk.display'
+               Screen
+            ;;
+            N) Screen ;;
+            *) "Unknown option." ; echo ; Screen ;;
+         esac
+      ;;
+      2)
+         echo -n "(Restart is required) - Would you like to apply the screen settings ? (y/N): "
+         read op
+         case $op in
+            y)
+               sudo sed -i '/orientation/d' /var/snap/mir-kiosk/current/miral-kiosk.display
+               sudo bash -c 'echo "        orientation: inverted    # {normal, left, right, inverted}, defaults to normal" >>/var/snap/mir-kiosk/current/miral-kiosk.display'
+               Screen
+            ;;
+            N) Screen ;;
+            *) "Unknown option." ; echo ; Screen ;;
+         esac
+      ;;
+      3) 
+      clear 
+      echo "------------------------------------------"
+      echo "    Screen Config                         "
+      echo "------------------------------------------"
+      echo      
+      cat /var/snap/mir-kiosk/current/miral-kiosk.display ; echo ; echo -n "Press ENTER key to continue... " ; read anykey ; Screen ;;
+      4) Menu ;;
+      *) "Unknown option." ; echo ; Menu ;;
+   esac  
 }
 
 Menu
