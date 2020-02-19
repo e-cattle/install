@@ -30,18 +30,20 @@ clear
    echo
    echo "[ 1 ] Configure Network"
    echo "[ 2 ] Configure Screen"
-   echo "[ 3 ] Console Shell"
-   echo "[ 4 ] Apply Configurations and Reboot"
-   echo "[ 5 ] Shutdown"
+   echo "[ 3 ] Configure Timezone"
+   echo "[ 4 ] Console Shell"
+   echo "[ 5 ] Apply Configurations and Reboot"
+   echo "[ 6 ] Shutdown"
    echo
    echo -n "Choose the operation ? "
    read op
    case $op in
       1) Network ;;
       2) Screen ;;
-      3) /bin/bash ;;
-      4) sudo reboot ;;
-      5) sudo shutdown -h now ;;
+      3) Timezone ;;
+      4) /bin/bash ;;
+      5) sudo reboot ;;
+      6) sudo shutdown -h now ;;
       *) "Unknown option." ; echo ; Menu ;;
    esac
 }
@@ -281,6 +283,50 @@ Screen(){
       echo      
       cat /var/snap/mir-kiosk/current/miral-kiosk.display ; echo ; echo -n "Press ENTER key to continue... " ; read anykey ; Screen ;;
       4) Menu ;;
+      *) "Unknown option." ; echo ; Menu ;;
+   esac  
+}
+
+Timezone(){
+   clear
+   echo "------------------------------------------"
+   echo "    Timezone Config          "
+   echo "------------------------------------------"
+   echo
+   echo "[ 1 ] Set Timezone Config "
+   echo "[ 2 ] Show Timezone Config"
+   echo "[ 3 ] Return Main Menu"
+   echo
+   echo -n "Choose the operation ? "
+   read op
+   case $op in
+      1)
+         echo "------------------------------------------"
+         echo "    Timezone Config          "
+         echo "------------------------------------------"
+         echo      
+         echo -n "Timezone - Ex: America/Campo_Grande: "
+         read tz
+         echo -n "(Restart is required) - Would you like to apply the timezone settings ? (y/N): "
+         read op
+         case $op in
+            y)
+               sudo timedatectl set-ntp yes
+               sudo timedatectl set-timezone America/Campo_Grande
+               Timezone
+            ;;
+            N) Timezone ;;
+            *) "Unknown option." ; echo ; Timezone ;;
+         esac
+      ;;
+      2) 
+      clear 
+      echo "------------------------------------------"
+      echo "    Timezone Config                         "
+      echo "------------------------------------------"
+      echo      
+      sudo timedatectl ; echo ; echo -n "Press ENTER key to continue... " ; read anykey ; Timezone ;;
+      3) Menu ;;
       *) "Unknown option." ; echo ; Menu ;;
    esac  
 }
