@@ -19,7 +19,10 @@ if [ ! -f /home/bigboxx/.ssh/id_rsa  ] ; then
 
    echo "SSH Key Generate"
    ssh-keygen -t rsa -N '' -f /home/bigboxx/.ssh/id_rsa ; cat /home/bigboxx/.ssh/id_rsa.pub > /home/bigboxx/.ssh/authorized_keys ; chmod 600 /home/bigboxx/.ssh/authorized_keys
-
+   
+   echo "Blocking snap updates"
+   sudo bash -c 'echo "127.0.0.1 localhost" > /etc/hosts'
+   sudo bash -c 'echo "127.1.1.1 search.apps.ubuntu.com api.snapcraft.io " >> /etc/hosts'
 fi
 
 Menu(){
@@ -30,7 +33,7 @@ clear
    echo
    echo "[ 1 ] Configure Network"
    echo "[ 2 ] Configure Screen"
-   echo "[ 3 ] Configure Timezone"
+   echo "[ 3 ] Update Bigboxx Modules"
    echo "[ 4 ] Console Shell"
    echo "[ 5 ] Apply Configurations and Reboot"
    echo "[ 6 ] Shutdown"
@@ -40,7 +43,7 @@ clear
    case $op in
       1) Network ;;
       2) Screen ;;
-      3) Timezone ;;
+      3) Update ;;
       4) /bin/bash ;;
       5) sudo reboot ;;
       6) sudo shutdown -h now ;;
@@ -54,12 +57,12 @@ Network(){
    echo "    Network Config          "
    echo "------------------------------------------"
    echo
+   echo "[ 0 ] Return Main Menu"
    echo "[ 1 ] Configure Ethernet Network Static"
    echo "[ 2 ] Configure Ethernet Network DHCP - (Config Default)"
    echo "[ 3 ] Configure Wifi Network Static"
    echo "[ 4 ] Configure Wifi Network DHCP"
    echo "[ 5 ] Show Network Config"
-   echo "[ 6 ] Return Main Menu"
    echo
    echo -n "Choose the operation ? "
    read op
@@ -97,10 +100,10 @@ sudo sed -i "s/IPADDRESS/\[$ip\/24\]/" "/etc/netplan/00-snapd-config.yaml"
 sudo sed -i "s/GATEWAY/$gw/" "/etc/netplan/00-snapd-config.yaml"
 sudo sed -i "s/DNS/$dns/" "/etc/netplan/00-snapd-config.yaml"
 sudo netplan apply
-Network
+Menu
             ;;
-            N) Network ;;
-            *) "Unknown option." ; echo ; Network ;;
+            N) Menu ;;
+            *) "Unknown option." ; echo ; Menu ;;
          esac
       ;;
       2) 
@@ -119,7 +122,7 @@ sudo bash -c 'cat << 'EOF' > /etc/netplan/00-snapd-config.yaml
 # This is the initial network config.
 # It can be overwritten by cloud-init or console-conf.
 network:
-    version: 2
+    version: 2V
     ethernets:
         all-en:
             match:
@@ -131,10 +134,10 @@ network:
             dhcp4: true
 EOF'
 sudo netplan apply
-Network
+Menu
             ;;
-            N) Network ;;
-            *) "Unknown option." ; echo ; Network ;;
+            N) Menu ;;
+            *) "Unknown option." ; echo ; Menu ;;
          esac
       ;;
 
@@ -181,10 +184,10 @@ sudo sed -i "s/PASSWD/$password/" "/etc/netplan/00-snapd-config.yaml"
 sudo sed -i "s/DNS/$dns/" "/etc/netplan/00-snapd-config.yaml"
 sudo netplan generate
 sudo netplan apply
-Network
+Menu
             ;;
-            N) Network ;;
-            *) "Unknown option." ; echo ; Network ;;
+            N) Menu ;;
+            *) "Unknown option." ; echo ; Menu ;;
          esac
       ;;
       4) 
@@ -218,10 +221,10 @@ sudo sed -i "s/SSID/$ssid/" "/etc/netplan/00-snapd-config.yaml"
 sudo sed -i "s/PASSWD/$password/" "/etc/netplan/00-snapd-config.yaml"
 sudo netplan generate
 sudo netplan apply
-Network
+Menu
             ;;
-            N) Network ;;
-            *) "Unknown option." ; echo ; Network ;;
+            N) Menu ;;
+            *) "Unknown option." ; echo ; Menu ;;
          esac
       ;;
       5) 
@@ -230,7 +233,7 @@ Network
       echo "    Network Config                        "
       echo "------------------------------------------"
       echo      
-      cat /etc/netplan/00-snapd-config.yaml ; echo ; echo -n "Press ENTER key to continue... " ; read anykey ; Network ;;
+      cat /etc/netplan/00-snapd-config.yaml ; echo ; echo -n "Press ENTER key to continue... " ; read anykey ; Menu ;;
       *) "Unknown option." ; echo ; Menu ;;
    esac
 }
@@ -241,10 +244,10 @@ Screen(){
    echo "    Screen Config          "
    echo "------------------------------------------"
    echo
+   echo "[ 0 ] Return Main Menu"
    echo "[ 1 ] Screen - Normal - (Config Default)"
    echo "[ 2 ] Screen - Inverted"
    echo "[ 3 ] Show Screen Config"
-   echo "[ 4 ] Return Main Menu"
    echo
    echo -n "Choose the operation ? "
    read op
@@ -256,10 +259,10 @@ Screen(){
             y)
                sudo sed -i '/orientation/d' /var/snap/mir-kiosk/current/miral-kiosk.display
                sudo bash -c 'echo "        orientation: normal    # {normal, left, right, inverted}, defaults to normal" >>/var/snap/mir-kiosk/current/miral-kiosk.display'
-               Screen
+               Menu
             ;;
-            N) Screen ;;
-            *) "Unknown option." ; echo ; Screen ;;
+            N) Menu ;;
+            *) "Unknown option." ; echo ; Menu ;;
          esac
       ;;
       2)
@@ -269,10 +272,10 @@ Screen(){
             y)
                sudo sed -i '/orientation/d' /var/snap/mir-kiosk/current/miral-kiosk.display
                sudo bash -c 'echo "        orientation: inverted    # {normal, left, right, inverted}, defaults to normal" >>/var/snap/mir-kiosk/current/miral-kiosk.display'
-               Screen
+               Menu
             ;;
-            N) Screen ;;
-            *) "Unknown option." ; echo ; Screen ;;
+            N) Menu ;;
+            *) "Unknown option." ; echo ; Menu ;;
          esac
       ;;
       3) 
@@ -281,54 +284,29 @@ Screen(){
       echo "    Screen Config                         "
       echo "------------------------------------------"
       echo      
-      cat /var/snap/mir-kiosk/current/miral-kiosk.display ; echo ; echo -n "Press ENTER key to continue... " ; read anykey ; Screen ;;
-      4) Menu ;;
+      cat /var/snap/mir-kiosk/current/miral-kiosk.display ; echo ; echo -n "Press ENTER key to continue... " ; read anykey ; Menu ;;
       *) "Unknown option." ; echo ; Menu ;;
    esac  
 }
 
-Timezone(){
-   clear
-   echo "------------------------------------------"
-   echo "    Timezone Config          "
-   echo "------------------------------------------"
-   echo
-   echo "[ 1 ] Set Timezone Config "
-   echo "[ 2 ] Show Timezone Config"
-   echo "[ 3 ] Return Main Menu"
-   echo
-   echo -n "Choose the operation ? "
-   read op
-   case $op in
-      1)
-         echo "------------------------------------------"
-         echo "    Timezone Config          "
-         echo "------------------------------------------"
-         echo      
-         echo -n "Timezone - Ex: America/Campo_Grande: "
-         read tz
-         echo -n "(Restart is required) - Would you like to apply the timezone settings ? (y/N): "
+Update(){
+         clear
+         echo -n "Would you like to update all Bigboxx modules ? (y/N): "
          read op
          case $op in
             y)
-               sudo timedatectl set-ntp yes
-               sudo timedatectl set-timezone America/Campo_Grande
-               Timezone
+               sudo bash -c 'echo "127.0.0.1 localhost" > /etc/hosts'
+               snap refresh bigboxx-kernel --devmode
+               snap refresh bigboxx-query --devmode
+               snap refresh bigboxx-totem --devmode
+               snap refresh
+               sudo bash -c 'echo "127.0.0.1 localhost" > /etc/hosts'
+               sudo bash -c 'echo "127.1.1.1 search.apps.ubuntu.com api.snapcraft.io " >> /etc/hosts'
+               Menu
             ;;
-            N) Timezone ;;
-            *) "Unknown option." ; echo ; Timezone ;;
+            N) Menu ;;
+            *) "Unknown option." ; echo ; Menu ;;
          esac
-      ;;
-      2) 
-      clear 
-      echo "------------------------------------------"
-      echo "    Timezone Config                         "
-      echo "------------------------------------------"
-      echo      
-      sudo timedatectl ; echo ; echo -n "Press ENTER key to continue... " ; read anykey ; Timezone ;;
-      3) Menu ;;
-      *) "Unknown option." ; echo ; Menu ;;
-   esac  
 }
 
 Menu
