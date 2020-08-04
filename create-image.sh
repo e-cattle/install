@@ -48,7 +48,7 @@ ubuntu-image \
 	--snap bigboxx-kernel=latest/edge \
 	--snap bigboxx-query=latest/edge \
 	--snap bigboxx-totem=latest/edge \
-	--snap mir-kiosk=latest/stable \
+	--snap mir-kiosk=latest/edge \
 	--snap wpe-webkit-mir-kiosk=latest/stable \
 	$ubuntu_image_extra_args \
 	$model.model
