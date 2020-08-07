@@ -1,12 +1,13 @@
 {
   "type": "model",
-  "authority-id": "<Snap account-id>",
-  "brand-id": "<Snap account-id>",
   "series": "16",
   "model": "bigboxx",
   "architecture": "arm64",
-  "base": "core18",
-  "gadget": "pi=18-pi3",
   "kernel": "pi-kernel=18-pi3",
+  "gadget": "pi=18-pi3",
+  "base": "core18",
+  "required-snaps": ["bigboxx-kernel", "bigboxx-query", "bigboxx-totem", "mir-kiosk", "wpe-webkit-mir-kiosk"],
+  "authority-id": "<Snap account-id>",
+  "brand-id": "<Snap account-id>",
   "timestamp": "<Resutado-commando-passo01>"
 }

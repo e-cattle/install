@@ -22,9 +22,10 @@ if [ $(id -u) -ne 0 ] ; then
 fi
 model=bigboxx
 arch=arm64
-image_name=bigboxx.img
+image_name=/tmp/bigboxx.img
 ubuntu_image_extra_args=
-channel=stable
+# channel=stable
+channel=edge
 
 if [ ! -z "$1" ] && [ "$1" == "amd64" ] ; then
 	channel=candidate
@@ -45,13 +46,13 @@ fi
 ubuntu-image \
 	--channel $channel \
 	-o $image_name \
-	--snap bigboxx-kernel=latest/edge \
-	--snap bigboxx-query=latest/edge \
-	--snap bigboxx-totem=latest/edge \
-	--snap mir-kiosk=latest/edge \
-	--snap wpe-webkit-mir-kiosk=latest/stable \
-	$ubuntu_image_extra_args \
 	$model.model
+	# $ubuntu_image_extra_args \
+	# --snap bigboxx-kernel=latest/edge \
+	# --snap bigboxx-query=latest/edge \
+	# --snap bigboxx-totem=latest/edge \
+	# --snap mir-kiosk=latest/edge \
+	# --snap wpe-webkit-mir-kiosk=latest/stable \
 	# --snap bigboxx-lora=latest/edge \
 
 kpartx -a $image_name
