@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/e-cattle/art/master/eCattle.pnghttps://raw.githubusercontent.com/e-cattle/art/master/eCattle.png" width="300" alt="e-Cattle Logo" />
+<img src="https://raw.githubusercontent.com/e-cattle/art/master/eCattle.png" width="300" alt="e-Cattle Logo" />
 
 # Geração de imagem do BigBoxx utilizando Ubuntu Core 18
 
